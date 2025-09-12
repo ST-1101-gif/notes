@@ -3,6 +3,7 @@
 A file is called a "blob", and it's just a bunch of bytes.
 A directory is called a "tree", and it maps names to blobs or trees.
 A snapshot is the top-level tree that is being tracked.
+A commit is a combination of log messages, other metadata (commit date, author, etc.), a reference to a tree, and references to parent commits. 
 
 ```
 // a file is a bunch of bytes
@@ -78,11 +79,18 @@ def load_reference(name_or_id):
 # Branch
 <https://learngitbranching.js.org/?locale=zh_CN>
 
+
 - `git branch`: shows branches
 - `git branch <name>`: creates a branch
 - `git checkout -b <name>`: creates a branch and switches to it
     - same as `git branch <name>; git checkout <name>`
 - `git merge <revision>`: merges into current branch
+Fast forwarding
+![](merge1.1.png)
+![](merge1.2.png)
+merge 2 'branches'
+![](merge2.1.png)
+![](merge2.2.png)
 - `git mergetool`: use a fancy tool to help resolve merge conflicts
 - `git rebase`: rebase set of patches onto a new base
   

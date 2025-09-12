@@ -3,25 +3,59 @@
 
 ## Terminal
 
-"end point of a railway line," 1888, from terminal (adj.); sense of "device for communicating with a computer" is first recorded 1954. Earlier "final part of a word" (1831).
+>"end point of a railway line," 1888, from terminal (adj.); 
+sense of "device for communicating with a computer" is first recorded 1954. 
+Earlier "final part of a word" (1831).
 
 ## the Shell
+Computers these days have a variety of **interfaces** for giving them commands; fanciful graphical user interfaces, voice interfaces, and even AR/VR are everywhere. These are great for 80% of use-cases, but they are often fundamentally restricted in what they allow you to do. 
+To take full advantage of the tools your computer provides, we have to go old-school and drop down to a textual interface: The **Shell**.
 
 ## Environment Variable
 
 ## Shell Command
+### Permission Management
+
+Permission Types
+- read (r)
+- write (w)
+- execute (or  search  for directories)  (x)
+- execute/search only if the file is a directory or already has execute permission for some user (X)
+- set user or group ID on execution (s)
+  - ​​Set User ID (SUID - sor 4):​​ When set on an executable, it runs with the permissions of the file's owner, not the user who executed it. (e.g., /usr/bin/passwd).
+  - ​Set Group ID (SGID - sor 2):​​
+  On an executable: runs with the group's permissions.
+  On a directory: new files created inside inherit the directory's group.
+
+Viewing Permissions
+
+`ls -l`
+```sh
+$ ls -l important_document.txt
+-rwxr-xr-- 1 alice developers 2048 Sep 12 10:00 important_document.txt
+```
+- 1st character (-):​​ File type (-= regular file, d= directory, l= symbolic link).
+- ​2-4 chars (rwx):​​ Permissions for the ​​user (owner)​​.
+- ​5-7 chars (r-x):​​ Permissions for the ​​group​​.
+- 8-10 chars (r--):​​ Permissions for ​​others​​.
+
+
+Changing Permissions
 
 `chmod` - change file mode bits
 
 symbolic representation: [ugoa...][[-+=][perms...]...]
 
-- `ugoa` controls which users' access to the file will be changed
+`ugoa` controls which users' access to the file will be changed
   - `u`: user / owner
   - `g`: group
   - `o`: others
   - `a`: all (default)
-- `perms` is either zero or more letters from the set `rwxXst`, or a single letter from the set `ugo`.
-- `rwxXst`: read (r), write (w), execute (or  search  for directories)  (x),  execute/search  only if the file is a directory or already has execute permission for some user (X), set user or group ID on execution (s), restricted deletion flag or sticky bit (t)
+
+`perms` is either zero or more letters from the set `rwxXst`, or a single letter from the set `ugo`.
+
+- restricted deletion flag or **sticky bit** --  Applied to a directory, it restricts file deletion. Only the file owner, directory owner, or root can delete files within it (e.g., /tmp). (t)
+
 
 octal number representation
 derived by adding up the bits with values 4 (read), 2 (write), and 1 (execute)
@@ -35,6 +69,113 @@ derived by adding up the bits with values 4 (read), 2 (write), and 1 (execute)
 chown [OPTION]... [OWNER][:[GROUP]] FILE...
 ```
 If a colon but  no  group name follows the user name, that user is made the owner of the files and the group of the files is changed to that user's login group.
+
+`chgrp` - change group ownership
+```sh
+chgrp [OPTION]... GROUP FILE...
+```
+Change the group of each FILE to GROUP.
+```sh
+chgrp [OPTION]... --reference=RFILE FILE...
+```
+Change the group of each FILE to that of RFILE.
+
+---
+
+### Log Analysis​
+
+Log Files
+- ​`​/var/log/syslog`​​ or ​`​/var/log/messages`​​: The primary system log. A catch-all for most system activity.
+- `​​/var/log/auth.log​`​ or `​​/var/log/secure​`​: The most important log for security. Records all authentication events (logins, sudo commands, failed attempts).
+- `​/var/log/kern.log​`​: Kernel messages, often related to hardware and drivers.
+- `​​/var/log/dmesg`​​: Kernel ring buffer messages, useful for boot-time hardware diagnostics.
+- ​​Service-specific logs:​​ Often in subdirectories like `/var/log/nginx/(access/error logs)`, `/var/log/apache2/`, `/var/log/mysql/`.
+
+### Data Wrangling
+
+`sed` - stream editor for filtering and transforming text
+```sh
+sed [OPTION]... {script-only-if-no-other-script} [input-file]...
+```
+-E, -r, --regexp-extended
+use extended regular expressions in the script (for portability use POSIX -E).
+
+Substitute (Replace) Text (s/)​
+```sh
+sed 's/old/new/' file.txt   #Replace the ​​first occurrence​​ of a pattern per line
+sed 's/old/new/g' file.txt  # Replace all occurrences​​ (global)
+sed 's/hello/HELLO/i' file.txt  # ​​Case-insensitive replacement​
+```
+Delete Lines (/d)​
+```sh
+sed '/pattern/d' file.txt
+```
+
+
+`awk` is a programming language that just happens to be really good at processing text streams. 
+```sh
+awk '{print $2}'
+awk '$1 == 1 && $2 ~ /^c[^ ]*e$/ { print $2 }'
+```
+
+`paste` - merge lines of files
+```sh
+paste [OPTION]... [FILE]...
+```
+-d, --delimiters=LIST
+reuse characters from LIST instead of TABs (by default)
+
+-s, --serial
+paste one file at a time instead of in parallel
+
+-z, --zero-terminated
+line delimiter is NUL, not newline
+
+`wc` - print newline, word, and byte counts for each file
+
+-c, --bytes
+print the byte counts
+
+-m, --chars
+print the character counts
+
+-l, --lines
+print the newline counts
+
+
+`sort` - sort lines of text files
+```sh
+sort [OPTION]... [FILE]...
+```
+-r, --reverse
+reverse the result of comparisons
+
+`uniq` - report or omit repeated lines
+
+```sh
+uniq [OPTION]... [INPUT [OUTPUT]]
+```
+
+-i, --ignore-case
+ignore differences in case when comparing
+
+-s, --skip-chars=N
+avoid comparing the first N characters
+
+-w, --check-chars=N
+compare no more than N characters in lines
+
+-c, --count
+prefix lines by the number of occurrences
+
+-d, --repeated
+only print duplicate lines, one for each group
+
+-u, --unique
+only print unique lines
+
+
+
 
 ---
 
