@@ -3,8 +3,119 @@ site_url: https://ST-1101-gif.github.io/notes
 
 
 nav:
-  - computer security:
+  - Computer Security:
+    - Principles: cs161/principles.md
     - Cryptography:
+      - Introduction: cs161/Cryptography/intro.md
+      - Symmetric: cs161/Cryptography/symmetric.md
+      - Hash Functions: cs161/Cryptography/hash.md 
       - Asymmetric: cs161/Cryptography/asymmetric.md
+    - Memory Safety:
+      - x86 Assembly: cs161/memory safety/x86.md
+      - Vulnerabilities: cs161/memory safety/vulnerabilities.md
+    - Web Security:
+      - CSRF: owasp/csrf.md
+      - XSS: owasp/xss.md
+      - SQL Injection: "owasp/sql injection.md"
+      - Command Injection: "owasp/command injection.md"
+      - File Inclusion: "owasp/File Inclusion.md"
+      - File Upload: "owasp/File Upload.md" 
+  - Internet:
+    - Introduction: web/intro.md
+    - Transport: web/transport.md
+    - Application: web/applications.md
+    - End-to-End: web/end-to-end.md
+  - Linux:
+    - shell: linux/shell.md
+    - vim: linux/vim.md
+  - Regular Expression: linux/regular expression.md
+  - Git: git/git.md
+  - Go: Go/syntax.md
+  - SQL:
+    - MySQL: SQL/MySQL.md
   
-theme: material
+# 主题配置
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.expand
+    - navigation.sections
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotate
+  palette:
+    # 亮色模式
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+    # 暗色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+  language: zh
+
+# Markdown 扩展
+markdown_extensions:
+  # 数学公式支持
+  - pymdownx.arithmatex:
+      generic: true
+  
+  # 代码相关
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  
+  # 文本增强
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.smartsymbols
+  
+  # 功能扩展
+  - pymdownx.details
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed
+  
+  # 表情符号
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  
+  # 标准扩展
+  - tables
+  - attr_list
+  - def_list
+  - toc:
+      permalink: true
+      baselevel: 2
+      separator: "_"
+
+# 插件配置
+plugins:
+  - search
+  - mermaid2:
+      version: "10.6.1"
+      arguments:
+        theme: dark
+        flowchart:
+          useMaxWidth: false
+
+# 数学公式支持（MathJax）
+extra_javascript:
+  - javascripts/mathjax-config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# 自定义CSS
+extra_css:
+  - stylesheets/extra.css

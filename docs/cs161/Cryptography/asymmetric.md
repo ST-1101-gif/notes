@@ -1,9 +1,11 @@
 # <center> Asymmetric cryptography
 ---
 $$
+\begin{aligned}
 KeyGen()->(PK,SK)\\
 Enc(M, PK)->C\\
 Dec(C, SK)->M
+\end{aligned}
 $$
 ## Trapdoor One-way Functions
 A **trapdoor one-way function** is a function that is one-way, but also has a special backdoor that enables someone who knows the backdoor to invert the function.
@@ -82,6 +84,8 @@ uses the session keys to decrypt the original message.
 
 ## Digital Signature
 $$
+\begin{aligned}
 S = Sign(SK, M)\\
 Verify(PK, M, S) -> true / false
+\end{aligned}
 $$

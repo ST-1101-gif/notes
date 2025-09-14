@@ -4,9 +4,11 @@
 ## Symmtric-Key Encrytion
 Algorithm:
 $$
+\begin{aligned}
 K = KeyGen() \\
 C = Enc(M, K) \\
 M = Dec(C, K)
+\end{aligned}
 $$
 Correctness: 
 $$
@@ -14,24 +16,22 @@ Dec(Enc(M), K) = K
 $$
 
 ## One Time Pad (OTP)
-Algorithm:
-$$
-Enc: C = M \oplus K \\
-Dec: M = C \oplus K
-$$
-Correctness:
-$$
-(M \oplus K) \oplus K = M
-$$
+
+Encryption: $C = M \oplus K$
+Decryption: $M = C \oplus K$
+
+Correctness: $(M \oplus K) \oplus K = M$
 
 Drawback: The shared key cannot be reused to transmit another message
 
 if a key is uesd twice:
 
 $$
+\begin{aligned}
 C_1 = M_1 \oplus K \\
 C_2 = M_2 \oplus K \\
 => C_1 \oplus C_2 = M_1 \oplus M_2
+\end{aligned}
 $$
 
 ## Block Ciphers
