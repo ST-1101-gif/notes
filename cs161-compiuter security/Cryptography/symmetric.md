@@ -2,6 +2,7 @@
 ---
 >we are going to assume that all messages are bitstrings, which is a sequence of bits, 0 or 1
 ## Symmtric-Key Encrytion
+Algorithm:
 $$
 K = KeyGen() \\
 C = Enc(M, K) \\
@@ -69,7 +70,9 @@ The decryption algorithm, however, is neither randomized nor stateful.
 - encode each block
 - concatenate
   
-flawed:
+encryption: $C_i = E_k(M_i)$
+
+decryption: $M_i = D_k(C_i)$
 
 **CBC Mode (Cipher Block Chaining)**
 ![](cbc.png)
@@ -82,6 +85,15 @@ Probabilistic Encryption *if IV is random*
 
 **Counter (CTR) Mode**
 
+encryption: $C_i = E_k(IV||i) \oplus M_i$
+
+decryption: $M_i = E_k(IV||i) \oplus C_i$
+
+
+![](ctr.png)
+
+---
+
 |  sequential | parallel  |
 |---|---|
 |   |   |
@@ -90,6 +102,38 @@ Probabilistic Encryption *if IV is random*
 
 
 One correct padding scheme is PKCS#7 padding. In this scheme, we pad the message by the number of padding bytes used.
+
+### AES
+AES encryption operates on a block of data through multiple **rounds** of processing. 
+Each round applies a set of reversible transformations to a two-dimensional 4x4 array of bytes called the **​​State​​**.
+
+The main steps for encrypting a single 128-bit block are:
+
+Key Expansion
+  The original cipher key is used to derive a set of round keys (a key schedule) using the Rijndael key schedule algorithm.
+
+Initial Round:​
+- ​​AddRoundKey
+  Each byte of the state is combined with a round key using bitwise XOR.
+
+Main Rounds (Repeated for 9, 11, or 13 rounds depending on key size):​
+- SubBytes
+  A non-linear substitution step where each byte is replaced with another byte according to a lookup table (S-box). 
+  This provides confusion.
+- ShiftRows
+  A transposition step where each row of the state is shifted cyclically a certain number of steps. The first row is not shifted, the second is shifted by one, etc. 
+  This provides diffusion.
+- MixColumns
+  A mixing operation which operates on the columns of the state, combining the four bytes in each column. 
+  This also provides diffusion.
+- AddRoundKey
+  The round key is XOR'd with the state again.
+
+Final Round (No MixColumns):​​
+
+- ​SubBytes​​
+- ​​ShiftRows​​
+- ​​AddRoundKey​
 
 
 ## Message Authentication Codes (MACs)
