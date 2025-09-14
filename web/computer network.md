@@ -114,7 +114,10 @@ More generally, we said that each layer only needs to communicate with its peers
 - The host’s peer is the other host.
 - The router’s peers are its neighboring routers along the path.
 
+# Network Architecture
 
+The term **socket** refers to an OS mechanism for connecting an application to the networking stack in the OS. 
+When an application opens a socket, that socket is associated with a logical port number. When the OS receives a packet, it uses the port number to direct that packet to the associated socket.
 
 # Designing Resource Sharing
 ## Statistical Multiplexing

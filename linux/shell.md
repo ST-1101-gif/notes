@@ -82,15 +82,6 @@ Change the group of each FILE to that of RFILE.
 
 ---
 
-### Log Analysis​
-
-Log Files
-- ​`​/var/log/syslog`​​ or ​`​/var/log/messages`​​: The primary system log. A catch-all for most system activity.
-- `​​/var/log/auth.log​`​ or `​​/var/log/secure​`​: The most important log for security. Records all authentication events (logins, sudo commands, failed attempts).
-- `​/var/log/kern.log​`​: Kernel messages, often related to hardware and drivers.
-- `​​/var/log/dmesg`​​: Kernel ring buffer messages, useful for boot-time hardware diagnostics.
-- ​​Service-specific logs:​​ Often in subdirectories like `/var/log/nginx/(access/error logs)`, `/var/log/apache2/`, `/var/log/mysql/`.
-
 ### Data Wrangling
 
 `sed` - stream editor for filtering and transforming text
@@ -221,6 +212,46 @@ $ nc -zv host.example.com 20-30
 Connection to host.example.com 22 port [tcp/ssh] succeeded!
 Connection to host.example.com 25 port [tcp/smtp] succeeded!
 ```
+
+`nmap` (“Network Mapper”) - Network exploration tool and security / port scanner
+```sh
+nmap [Scan Type...] [Options] {target specification}
+```
+
+TARGET SPECIFICATION:
+Can pass hostnames, IP addresses, networks, etc.
+Ex: `scanme.nmap.org`, `microsoft.com/24`, 192.168.0.1; 10.0.0-255.1-254
+
+HOST DISCOVERY:
+-sn: Ping Scan - disable port scan
+
+PORT SPECIFICATION AND SCAN ORDER:
+-p \<port ranges\>: Only scan specified ports
+Ex: -p22; -p1-65535; -p U:53,111,137,T:21-25,80,139,8080,S:9
+
+SCAN TECHNIQUES:
+-sS/sT/sA/sW/sM: TCP SYN/Connect()/ACK/Window/Maimon scans
+-sN/sF/sX: TCP Null, FIN, and Xmas scans
+-sU: UDP Scan
+
+OS DETECTION:
+-O: Enable OS detection
+
+SERVICE/VERSION DETECTION:
+-sV: Probe open ports to determine service/version info
+
+---
+
+`hashcat` - Advanced CPU-based password recovery utility
+
+```sh
+hashcat [options] hashfile [mask|wordfiles|directories]
+```
+
+Hashcat is the world’s fastest CPU-based password recovery tool.
+
+
+
 
 ---
 
