@@ -11,13 +11,30 @@ A **trapdoor one-way function** is a function that is one-way, but also has a sp
 - backdoor: decryption with private key
 
 ## RSA
+RSA public-key cryptosystem, named after its inventors Ronald Rivest, Adi Shamir and Leonard Adleman
+
+
+
 RSA Hardness: 
 Suppose $n = pq$, i.e. $n$ is the product of two large primes $p$ and $q$.
 Given $c =m^e \pmod n$ and $e$, it is computationally hard to find $m$. However, with the factorization of $n$ (i.e. $p$ or $q$), it becomes easy to find $m$.
 
+Let $p$ and $q$ be two large primes (typically having, say, 512 bits each), and let $N = pq$. 
+Also, let $e$ be any number that is relatively prime to $(p−1)(q−1)$. (Typically $e$ is chosen to be a small value such as 3.) 
+
+Then Bob’s public key is the pair of numbers $(N,e)$. 
+The private key is the number $d$, which is the inverse of $e$ mod $(p−1)(q−1)$. (This inverse is guaranteed to exist because $e$ and $(p−1)(q−1)$ are coprime.)
+
+encryption: $C = M^e \mod N$
+
+decryption: $M = C^d \mod N$
+
+
 deterministic, so not IND-CPA secure
 
 **public-key padding** is a tool for mixing in some randomness so that the ciphertext output “looks random,” but can still be decrypted to retrieve the original plaintext.
+
+>Despite the name, RSA padding modes are more similar to the IVs in block cipher modes than the padding in block cipher modes. 
 
 One common padding scheme is **OAEP (Optimal Asymmetric Encryption Padding)**. 
 

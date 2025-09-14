@@ -150,6 +150,7 @@ void vulnerable() {
 }
 ```
 payload: a large `len` e.g. 0xFFFFFFFF
+In this case, the code allocates a 4-byte buffer and then writes a lot more than 4 bytes into it: a classic buffer overflow.
 
 check bounds whenever add to integers
 ```c

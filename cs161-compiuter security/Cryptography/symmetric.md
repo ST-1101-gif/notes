@@ -100,6 +100,9 @@ decryption: $M_i = E_k(IV||i) \oplus C_i$
 
 <https://textbook.cs161.org/crypto/symmetric.html#64-block-ciphers>
 
+### Padding
+
+**Padding** is the process of adding extra data to a message ​​before​​ encryption to ensure its length meets the specific requirements of the cryptographic algorithm.
 
 One correct padding scheme is PKCS#7 padding. In this scheme, we pad the message by the number of padding bytes used.
 
