@@ -1,0 +1,1959 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ST-1101-gif.github.io/notes/linux/bandit/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
+    
+    
+      
+        <title>Bandit - 雨33的notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#level0" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="雨33的notebook" class="md-header__button md-logo" aria-label="雨33的notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            雨33的notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bandit
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../cs161/principles/" class="md-tabs__link">
+          
+  
+  
+  Computer Security
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../web/intro/" class="md-tabs__link">
+          
+  
+  
+  Internet
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../shell/" class="md-tabs__link">
+          
+  
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../regular%20expression/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Regular Expression
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../git/git/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Git
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Go/syntax/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Go
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/MySQL/" class="md-tabs__link">
+          
+  
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="雨33的notebook" class="md-nav__button md-logo" aria-label="雨33的notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    雨33的notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Computer Security
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Computer Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs161/principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Principles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cryptography
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cryptography
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs161/Cryptography/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs161/Cryptography/symmetric/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Symmetric
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs161/Cryptography/hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hash Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs161/Cryptography/asymmetric/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Asymmetric
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Memory Safety
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Memory Safety
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs161/memory%20safety/x86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    x86 Assembly
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs161/memory%20safety/vulnerabilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vulnerabilities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Web Security
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            Web Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../owasp/csrf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CSRF
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../owasp/xss/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    XSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../owasp/sql%20injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Injection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../owasp/command injection.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Injection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../owasp/File%20Inclusion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Inclusion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../owasp/File%20Upload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Upload
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Internet
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Internet
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/transport/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transport
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/applications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Application
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    End-to-End
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    shell
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    vim
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../regular%20expression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Regular Expression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Go/syntax/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Go
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SQL
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/MySQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MySQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#level0" class="md-nav__link">
+    <span class="md-ellipsis">
+      level0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level1" class="md-nav__link">
+    <span class="md-ellipsis">
+      level1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level2" class="md-nav__link">
+    <span class="md-ellipsis">
+      level2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level3" class="md-nav__link">
+    <span class="md-ellipsis">
+      level3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level4" class="md-nav__link">
+    <span class="md-ellipsis">
+      level4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level5" class="md-nav__link">
+    <span class="md-ellipsis">
+      level5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level6" class="md-nav__link">
+    <span class="md-ellipsis">
+      level6
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level7" class="md-nav__link">
+    <span class="md-ellipsis">
+      level7
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level8" class="md-nav__link">
+    <span class="md-ellipsis">
+      level8
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lebel9" class="md-nav__link">
+    <span class="md-ellipsis">
+      lebel9
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level10" class="md-nav__link">
+    <span class="md-ellipsis">
+      level10
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level11" class="md-nav__link">
+    <span class="md-ellipsis">
+      level11
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level12" class="md-nav__link">
+    <span class="md-ellipsis">
+      level12
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level13" class="md-nav__link">
+    <span class="md-ellipsis">
+      level13
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level14" class="md-nav__link">
+    <span class="md-ellipsis">
+      level14
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level15" class="md-nav__link">
+    <span class="md-ellipsis">
+      level15
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level16" class="md-nav__link">
+    <span class="md-ellipsis">
+      level16
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level17" class="md-nav__link">
+    <span class="md-ellipsis">
+      level17
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level18" class="md-nav__link">
+    <span class="md-ellipsis">
+      level18
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level19" class="md-nav__link">
+    <span class="md-ellipsis">
+      level19
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level20" class="md-nav__link">
+    <span class="md-ellipsis">
+      level20
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level21" class="md-nav__link">
+    <span class="md-ellipsis">
+      level21
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level22" class="md-nav__link">
+    <span class="md-ellipsis">
+      level22
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level23" class="md-nav__link">
+    <span class="md-ellipsis">
+      level23
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level24" class="md-nav__link">
+    <span class="md-ellipsis">
+      level24
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level25" class="md-nav__link">
+    <span class="md-ellipsis">
+      level25
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level26" class="md-nav__link">
+    <span class="md-ellipsis">
+      level26
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level27" class="md-nav__link">
+    <span class="md-ellipsis">
+      level27
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level28" class="md-nav__link">
+    <span class="md-ellipsis">
+      level28
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level29" class="md-nav__link">
+    <span class="md-ellipsis">
+      level29
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level30" class="md-nav__link">
+    <span class="md-ellipsis">
+      level30
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level31" class="md-nav__link">
+    <span class="md-ellipsis">
+      level31
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level32" class="md-nav__link">
+    <span class="md-ellipsis">
+      level32
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Bandit</h1>
+
+<h2 id="level0">level0<a class="headerlink" href="#level0" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><span id="True-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cat<span class="w"> </span>readme
+</span></code></pre></div>
+ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If</p>
+<h2 id="level1">level1<a class="headerlink" href="#level1" title="Permanent link">&para;</a></h2>
+<p>weird file name
+<div class="highlight"><pre><span></span><code><span id="True-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cat<span class="w"> </span>~/-
+</span></code></pre></div>
+263JGJPfgU6LtdEvgfWU1XP5yac29mFx</p>
+<h2 id="level2">level2<a class="headerlink" href="#level2" title="Permanent link">&para;</a></h2>
+<p>space in file name
+<div class="highlight"><pre><span></span><code><span id="True-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cat<span class="w"> </span>~/--spaces<span class="se">\ </span><span class="k">in</span><span class="se">\ </span>this<span class="se">\ </span>filename--
+</span></code></pre></div>
+MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx</p>
+<h2 id="level3">level3<a class="headerlink" href="#level3" title="Permanent link">&para;</a></h2>
+<p>dot in file name 
+<div class="highlight"><pre><span></span><code><span id="True-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>inhere
+</span><span id="True-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>ls<span class="w"> </span>-a<span class="w"> </span>
+</span><span id="True-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>cat<span class="w"> </span>./...Hiding-From-You
+</span></code></pre></div>
+2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ</p>
+<h2 id="level4">level4<a class="headerlink" href="#level4" title="Permanent link">&para;</a></h2>
+<p>file information
+<div class="highlight"><pre><span></span><code><span id="True-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>file<span class="w"> </span>./*
+</span><span id="True-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>cat<span class="w"> </span>./-file07
+</span></code></pre></div>
+4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw</p>
+<h2 id="level5">level5<a class="headerlink" href="#level5" title="Permanent link">&para;</a></h2>
+<p>file filter
+<div class="highlight"><pre><span></span><code><span id="True-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span>inhere
+</span><span id="True-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-size<span class="w"> </span>1033c
+</span><span id="True-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>cat<span class="w"> </span>maybehere07/.file2
+</span></code></pre></div>
+HWasnPhtq9AVKe0dmk45nxy20cvUa6EG</p>
+<h2 id="level6">level6<a class="headerlink" href="#level6" title="Permanent link">&para;</a></h2>
+<p>file filter
+<div class="highlight"><pre><span></span><code><span id="True-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>find<span class="w"> </span>/<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-size<span class="w"> </span>33c<span class="w"> </span>-user<span class="w"> </span>bandit7<span class="w"> </span>-group<span class="w"> </span>bandit6<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>password
+</span><span id="True-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>cat<span class="w"> </span>/var/lib/dpkg/info/bandit7.password
+</span></code></pre></div>
+morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj</p>
+<h2 id="level7">level7<a class="headerlink" href="#level7" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><span id="True-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cat<span class="w"> </span>data.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>millionth
+</span></code></pre></div>
+dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc</p>
+<h2 id="level8">level8<a class="headerlink" href="#level8" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><span id="True-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sort<span class="w"> </span>data.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-u
+</span></code></pre></div>
+4CKMh1JI91bUIZZPXDqGanal4xvAg0JM</p>
+<h2 id="lebel9">lebel9<a class="headerlink" href="#lebel9" title="Permanent link">&para;</a></h2>
+<p><code>strings</code> - print the sequences of printable characters in files
+<div class="highlight"><pre><span></span><code><span id="True-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>strings<span class="w"> </span>data.txt
+</span></code></pre></div>
+FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey</p>
+<h2 id="level10">level10<a class="headerlink" href="#level10" title="Permanent link">&para;</a></h2>
+<p>base64
+<div class="highlight"><pre><span></span><code><span id="True-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>base64<span class="w"> </span>-d<span class="w"> </span>data.txt
+</span></code></pre></div>
+dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr</p>
+<h2 id="level11">level11<a class="headerlink" href="#level11" title="Permanent link">&para;</a></h2>
+<p>Rot13
+<code>tr</code>: translate or delete characters</p>
+<p><div class="highlight"><pre><span></span><code><span id="True-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>cat<span class="w"> </span>data.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s2">&quot;a-zA-Z&quot;</span><span class="w"> </span><span class="s2">&quot;n-za-mN-ZA-M&quot;</span>
+</span></code></pre></div>
+7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4</p>
+<h2 id="level12">level12<a class="headerlink" href="#level12" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>hexdump
+<code>xxd</code>: make a hex dump or do the reverse</p>
+</li>
+<li>
+<p>file compression</p>
+</li>
+<li><code>gzip</code> </li>
+<li><code>bzip2</code></li>
+<li><code>tar</code></li>
+<li>...
+<div class="highlight"><pre><span></span><code><span id="True-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>xxd<span class="w"> </span>-r<span class="w"> </span>data.txt
+</span><span id="True-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>file<span class="w"> </span>data.txt<span class="w">   </span><span class="c1"># gzip</span>
+</span><span id="True-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>mv<span class="w"> </span>data.txt<span class="w"> </span>data.gz
+</span><span id="True-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>gzip<span class="w"> </span>-d<span class="w"> </span>data.gz
+</span><span id="True-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>file<span class="w"> </span>data.out<span class="w">   </span><span class="c1"># bzip2</span>
+</span><span id="True-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>mv<span class="w"> </span>data.out<span class="w"> </span>data.bz2
+</span><span id="True-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>bzip2<span class="w"> </span>-d<span class="w"> </span>data.bz2
+</span><span id="True-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>file<span class="w"> </span>data<span class="w">   </span><span class="c1"># POSIX tar archive (GNU)</span>
+</span><span id="True-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>mv<span class="w"> </span>data<span class="w"> </span>data.tar
+</span><span id="True-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>tar<span class="w"> </span>-xf<span class="w"> </span>data.tar<span class="w"> </span>
+</span><span id="True-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>...
+</span></code></pre></div>
+FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn</li>
+</ul>
+<h2 id="level13">level13<a class="headerlink" href="#level13" title="Permanent link">&para;</a></h2>
+<p><code>ssh -i</code>: identity_file
+Selects a file from which the identity (private key) for public key authentication is read.
+<div class="highlight"><pre><span></span><code><span id="True-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ssh<span class="w"> </span>-i<span class="w"> </span>./sshkey.private<span class="w"> </span>bandit14@localhost<span class="w"> </span>-p<span class="w"> </span><span class="m">2220</span>
+</span><span id="True-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>cat<span class="w"> </span>/etc/bandit_pass/bandit14
+</span></code></pre></div>
+MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS</p>
+<h2 id="level14">level14<a class="headerlink" href="#level14" title="Permanent link">&para;</a></h2>
+<p><code>nc</code>: arbitrary TCP and UDP connections and listens
+<div class="highlight"><pre><span></span><code><span id="True-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>nc<span class="w"> </span>localhost<span class="w"> </span><span class="m">30000</span>
+</span></code></pre></div>
+8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo</p>
+<h2 id="level15">level15<a class="headerlink" href="#level15" title="Permanent link">&para;</a></h2>
+<p><code>openssl</code>: OpenSSL command line program</p>
+<blockquote>
+<p>OpenSSL is a cryptography toolkit implementing the Secure Sockets Layer (SSL v2/v3) and Transport Layer Security (TLS v1) network protocols and related cryptography standards required by them.
+The openssl program is a command line program for using the various cryptography functions of OpenSSL's crypto library from the shell.  It can be used for</p>
+<blockquote>
+<p>o  Creation and management of private keys, public keys and parameters
+o  Public key cryptographic operations
+o  Creation of X.509 certificates, CSRs and CRLs
+o  Calculation of Message Digests and Message Authentication Codes
+o  Encryption and Decryption with Ciphers
+o  SSL/TLS Client and Server Tests
+o  Handling of S/MIME signed or encrypted mail
+o  Timestamp requests, generation and verification</p>
+</blockquote>
+</blockquote>
+<p><div class="highlight"><pre><span></span><code><span id="True-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>openssl<span class="w"> </span>s_client<span class="w"> </span>-connect<span class="w"> </span>localhost:30001
+</span></code></pre></div>
+kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx</p>
+<h2 id="level16">level16<a class="headerlink" href="#level16" title="Permanent link">&para;</a></h2>
+<p><code>nmap</code>: Network exploration tool and security / <strong>port scanner</strong>
+<code>ncat</code>: Concatenate and redirect sockets
+<div class="highlight"><pre><span></span><code><span id="True-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>nmap<span class="w"> </span>-sV<span class="w"> </span>localhost<span class="w"> </span>-p<span class="w"> </span><span class="m">31000</span>-32000
+</span><span id="True-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="c1"># several open ports, 2 ssl </span>
+</span><span id="True-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>ncat<span class="w"> </span>--ssl<span class="w"> </span>localhost<span class="w"> </span><span class="m">31790</span>
+</span><span id="True-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1"># submit password -&gt; private key in /tmp/key/private.key</span>
+</span><span id="True-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>ssh<span class="w"> </span>-i<span class="w"> </span>/tmp/key/private.key<span class="w"> </span>bandit17@localhost<span class="w"> </span>-p<span class="w"> </span><span class="m">2220</span>
+</span></code></pre></div></p>
+<h2 id="level17">level17<a class="headerlink" href="#level17" title="Permanent link">&para;</a></h2>
+<p><code>diff</code>: compare files line by line
+<div class="highlight"><pre><span></span><code><span id="True-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>diff<span class="w"> </span>passwords.new<span class="w"> </span>passwords.old
+</span></code></pre></div>
+x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO</p>
+<h2 id="level18">level18<a class="headerlink" href="#level18" title="Permanent link">&para;</a></h2>
+<p>executing commands remotely
+<div class="highlight"><pre><span></span><code><span id="True-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>ssh<span class="w"> </span>bandit18@bandit.labs.overthewire.org<span class="w"> </span>-p<span class="w"> </span><span class="m">2220</span><span class="w"> </span><span class="s2">&quot;cat ./readme&quot;</span>
+</span></code></pre></div>
+cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8</p>
+<h2 id="level19">level19<a class="headerlink" href="#level19" title="Permanent link">&para;</a></h2>
+<p>setuid: set user ID
+<div class="highlight"><pre><span></span><code><span id="True-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>./bandit20-do<span class="w"> </span>cat<span class="w"> </span>/etc/bandit_pass/bandit20
+</span></code></pre></div>
+0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO</p>
+<h2 id="level20">level20<a class="headerlink" href="#level20" title="Permanent link">&para;</a></h2>
+<p><code>nc -l</code>: Listen for an incoming connection
+<div class="highlight"><pre><span></span><code><span id="True-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>nc<span class="w"> </span>-l<span class="w"> </span><span class="m">1234</span><span class="w"> </span><span class="p">&amp;</span>
+</span><span id="True-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="c1"># echo: send to pipe immediately, but not send to the port until connected</span>
+</span><span id="True-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="c1"># listen on local port 1234</span>
+</span><span id="True-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>./suconnect<span class="w"> </span><span class="m">1234</span>
+</span><span id="True-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="c1"># connect local port 1234 </span>
+</span></code></pre></div>
+EeoULMCra2q0dSkYj561DX7s1CpBuOBt</p>
+<h2 id="level21">level21<a class="headerlink" href="#level21" title="Permanent link">&para;</a></h2>
+<p><code>cron</code>: daemon to execute scheduled commands</p>
+<p><div class="highlight"><pre><span></span><code><span id="True-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>ls<span class="w"> </span>/etc/cron.d
+</span><span id="True-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>cat<span class="w"> </span>cronjob_bandit22
+</span><span id="True-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>cat<span class="w"> </span>...
+</span></code></pre></div>
+tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q</p>
+<h2 id="level22">level22<a class="headerlink" href="#level22" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><span id="True-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>cat<span class="w"> </span>cronjob_bandit23
+</span><span id="True-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="c1"># #!/bin/bash</span>
+</span><span id="True-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+</span><span id="True-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># myname=$(whoami)</span>
+</span><span id="True-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="c1"># mytarget=$(echo I am user $myname | md5sum | cut -d &#39; &#39; -f 1)</span>
+</span><span id="True-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
+</span><span id="True-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="c1"># echo &quot;Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget&quot;</span>
+</span><span id="True-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>
+</span><span id="True-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="c1"># cat /etc/bandit_pass/$myname &gt; /tmp/$mytarget</span>
+</span><span id="True-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="nb">echo</span><span class="w"> </span>I<span class="w"> </span>am<span class="w"> </span>uer<span class="w"> </span>bandit23<span class="w"> </span><span class="p">|</span><span class="w"> </span>md5sum<span class="w"> </span><span class="p">|</span><span class="w"> </span>sut<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>
+</span><span id="True-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="c1"># 8ca319486bfbbc3663ea0fbe81326349</span>
+</span><span id="True-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>cat<span class="w"> </span>/tmp/8ca319486bfbbc3663ea0fbe81326349
+</span></code></pre></div>
+0Zf11ioIjMVN551jX3CmStKLYqjk54Ga</p>
+<h2 id="level23">level23<a class="headerlink" href="#level23" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><span id="True-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>$<span class="w"> </span>cat<span class="w"> </span>cronjob_bandit24
+</span><span id="True-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>$<span class="w"> </span>cat<span class="w"> </span>/usr/bin/cronjob_bandit24.sh
+</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="True-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="True-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
+</span><span id="True-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span>
+</span><span id="True-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>
+</span><span id="True-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="nb">cd</span><span class="w"> </span>/var/spool/<span class="nv">$myname</span>/foo
+</span><span id="True-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Executing and deleting all scripts in /var/spool/</span><span class="nv">$myname</span><span class="s2">/foo:&quot;</span>
+</span><span id="True-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span>*<span class="w"> </span>.*<span class="p">;</span>
+</span><span id="True-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="k">do</span>
+</span><span id="True-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;.&quot;</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;..&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span>
+</span><span id="True-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="w">    </span><span class="k">then</span>
+</span><span id="True-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Handling </span><span class="nv">$i</span><span class="s2">&quot;</span>
+</span><span id="True-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="w">        </span><span class="nv">owner</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>stat<span class="w"> </span>--format<span class="w"> </span><span class="s2">&quot;%U&quot;</span><span class="w"> </span>./<span class="nv">$i</span><span class="k">)</span><span class="s2">&quot;</span>
+</span><span id="True-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">owner</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;bandit23&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span id="True-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="w">            </span>timeout<span class="w"> </span>-s<span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">60</span><span class="w"> </span>./<span class="nv">$i</span>
+</span><span id="True-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="w">        </span><span class="k">fi</span>
+</span><span id="True-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a><span class="w">        </span>rm<span class="w"> </span>-f<span class="w"> </span>./<span class="nv">$i</span>
+</span><span id="True-24-17"><a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a><span class="w">    </span><span class="k">fi</span>
+</span><span id="True-24-18"><a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a><span class="k">done</span>
+</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="True-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>$<span class="w"> </span>vim<span class="w"> </span>/tmp/getpassword.sh
+</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="True-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="ch">#!/bin/bash </span>
+</span><span id="True-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="True-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>cat<span class="w"> </span>/etc/bandit_pass/bandit24<span class="w"> </span>&gt;<span class="w"> </span>/tmp/pw.txt
+</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="True-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>$<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w">  </span>/tmp/getpassword.sh
+</span><span id="True-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>$<span class="w"> </span>cp<span class="w"> </span>/tmp/getpassword.sh<span class="w"> </span>/var/spool/bandit24/foo
+</span><span id="True-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>$<span class="w"> </span>cat<span class="w"> </span>/tmp/pw.txt
+</span></code></pre></div>
+gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8</p>
+<h2 id="level24">level24<a class="headerlink" href="#level24" title="Permanent link">&para;</a></h2>
+<p>boom
+<div class="highlight"><pre><span></span><code><span id="True-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="True-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
+</span><span id="True-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">0000</span>..9999<span class="o">}</span>
+</span><span id="True-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="k">do</span>
+</span><span id="True-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span>gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>possibilities.txt
+</span><span id="True-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="k">done</span>
+</span><span id="True-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>
+</span><span id="True-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>cat<span class="w"> </span>possibilities.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>nc<span class="w"> </span>localhost<span class="w"> </span><span class="m">30002</span><span class="w"> </span>&gt;<span class="w"> </span>result.txt
+</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="True-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>$<span class="w"> </span>cat<span class="w"> </span>result.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>Wrong<span class="w">    </span><span class="c1"># -v: invert matching </span>
+</span></code></pre></div>
+iCi86ttT4KSNe1armKiwbQNmB3YJP3q4</p>
+<h2 id="level25">level25<a class="headerlink" href="#level25" title="Permanent link">&para;</a></h2>
+<p><code>/etc/passwd</code>: stores the basic information of all users
+<div class="highlight"><pre><span></span><code><span id="True-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>$<span class="w"> </span>cat<span class="w"> </span>/etc/passwd<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>bandit26<span class="w">   </span><span class="c1"># check shell</span>
+</span><span id="True-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>bandit26:x:11026:11026:bandit<span class="w"> </span>level<span class="w"> </span><span class="m">26</span>:/home/bandit26:/usr/bin/showtext
+</span><span id="True-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="c1"># user name:password:uid:gid:comment:home directory:shell</span>
+</span><span id="True-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>$<span class="w"> </span>cat<span class="w"> </span>/usr/bin/showtext
+</span><span id="True-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="c1">#!/bin/sh</span>
+</span><span id="True-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>
+</span><span id="True-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TERM</span><span class="o">=</span>linux
+</span><span id="True-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>
+</span><span id="True-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a>more<span class="w"> </span>~/text.txt<span class="w"> </span><span class="c1"># we should stop here</span>
+</span><span id="True-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="nb">exit</span><span class="w"> </span><span class="m">0</span><span class="w">  </span><span class="c1"># !!!</span>
+</span><span id="True-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a>$
+</span></code></pre></div>
+<code>more</code>:  file perusal filter for crt viewing
+hidden feature: type <code>v</code> will call the defualt editor </p>
+<p><div class="highlight"><pre><span></span><code><span id="True-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># first shrink the terminal interface</span>
+</span><span id="True-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>$<span class="w"> </span>ssh<span class="w"> </span>-i<span class="w"> </span>./bandit26.sshkey<span class="w"> </span>bandit26@localhost<span class="w"> </span>-p<span class="w"> </span><span class="m">2220</span>
+</span><span id="True-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="c1"># page viewing, type v</span>
+</span><span id="True-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>:set<span class="w"> </span><span class="nv">shell</span><span class="o">=</span>/bin/bash<span class="w">    </span><span class="c1"># command mode</span>
+</span><span id="True-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>:shell<span class="w">  </span><span class="c1"># call shell (bash)</span>
+</span><span id="True-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>cat<span class="w"> </span>/etc/bandit_pass/bandit26
+</span></code></pre></div>
+s0773xxkk0MXfdqOfPRVr9L3jJBUOgCZ</p>
+<h2 id="level26">level26<a class="headerlink" href="#level26" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><span id="True-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>./bandit27-do<span class="w"> </span>cat<span class="w"> </span>/etc/bandit_pass/bandit27
+</span></code></pre></div>
+upsNCc7vzaRDx6oZC6GiR6ERwe1MowGB</p>
+<h2 id="level27">level27<a class="headerlink" href="#level27" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><span id="True-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>git<span class="w"> </span>clone<span class="w"> </span>ssh://bandit27-git@localhost/home/bandit27-git/repo
+</span></code></pre></div>
+Yz9IpL0sBcCeuG7m9uQFt8ZNpS4HZRcN</p>
+<h2 id="level28">level28<a class="headerlink" href="#level28" title="Permanent link">&para;</a></h2>
+<p>version
+<div class="highlight"><pre><span></span><code><span id="True-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>mkdir<span class="w"> </span>/tmp/git-bandit28
+</span><span id="True-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="nb">cd</span><span class="w"> </span>/tmp/git-bandit28
+</span><span id="True-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>git<span class="w"> </span>clone<span class="w"> </span>ssh://bandit28-git@localhost:2220/home/bandit28-git/repo<span class="w"> </span><span class="c1"># add port!</span>
+</span><span id="True-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>cat<span class="w"> </span>README.md
+</span><span id="True-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="c1"># password: xxxxx</span>
+</span><span id="True-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>git<span class="w"> </span>log
+</span><span id="True-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="c1"># versions shown</span>
+</span><span id="True-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>git<span class="w"> </span>checkout<span class="w"> </span>68314e012fbaa192abfc9b78ac369c82b75fab8f
+</span><span id="True-34-9"><a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a>cat<span class="w"> </span>README.md
+</span></code></pre></div>
+4pT1t5DENaYuqnqvadYs1oE4QLCdjmJ7</p>
+<h2 id="level29">level29<a class="headerlink" href="#level29" title="Permanent link">&para;</a></h2>
+<p>branch
+<div class="highlight"><pre><span></span><code><span id="True-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>git<span class="w"> </span>branch<span class="w"> </span>-a
+</span><span id="True-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>git<span class="w"> </span>checkout<span class="w"> </span>dev
+</span><span id="True-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>cat<span class="w"> </span>README.md
+</span></code></pre></div>
+qp30ex3VLz5MDG1n91YowTv4Q8l7CDZL</p>
+<h2 id="level30">level30<a class="headerlink" href="#level30" title="Permanent link">&para;</a></h2>
+<p>tag
+<div class="highlight"><pre><span></span><code><span id="True-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>git<span class="w"> </span>tag
+</span><span id="True-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>git<span class="w"> </span>show<span class="w"> </span>secret
+</span></code></pre></div>
+fb5S2xb7bRyFmAvQYQGEqsbhVyJqhnDy</p>
+<h2 id="level31">level31<a class="headerlink" href="#level31" title="Permanent link">&para;</a></h2>
+<p>add -&gt; commit -&gt; push
+<div class="highlight"><pre><span></span><code><span id="True-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;May I come in?&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>key.txt
+</span><span id="True-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>git<span class="w"> </span>add<span class="w"> </span>-f<span class="w"> </span>key.txt
+</span><span id="True-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;key&quot;</span>
+</span><span id="True-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>master
+</span></code></pre></div>
+3O9RfhqyAlVBEZpVb6LYStshZoqoSx5K</p>
+<h2 id="level32">level32<a class="headerlink" href="#level32" title="Permanent link">&para;</a></h2>
+<p><code>$0</code> - Name of the script
+<div class="highlight"><pre><span></span><code><span id="True-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="c1"># UPPER SHELL</span>
+</span><span id="True-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="nv">$0</span>
+</span><span id="True-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>cat<span class="w"> </span>/etc/bandit_pass/bandit33
+</span></code></pre></div>
+tQdtbs5D5i2vJwkO8mEyYEyTL8izoeJ0</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.expand", "navigation.sections", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+        <script src="../../javascripts/mathjax-config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2015 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ST-1101-gif.github.io/notes/web/transport/">
+      
+      
+        <link rel="prev" href="../intro/">
+      
+      
+        <link rel="next" href="../applications/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
+    
+    
+      
+        <title>Transport - 雨33的notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#transport_layer_principles" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="雨33的notebook" class="md-header__button md-logo" aria-label="雨33的notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            雨33的notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Transport
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../cs161/principles/" class="md-tabs__link">
+          
+  
+  
+  Computer Security
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../intro/" class="md-tabs__link">
+          
+  
+  
+  Internet
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../linux/shell/" class="md-tabs__link">
+          
+  
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/regular%20expression/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Regular Expression
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../git/git/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Git
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Go/syntax/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Go
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/MySQL/" class="md-tabs__link">
+          
+  
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="雨33的notebook" class="md-nav__button md-logo" aria-label="雨33的notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    雨33的notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Computer Security
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Computer Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs161/principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Principles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cryptography
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cryptography
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs161/Cryptography/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs161/Cryptography/symmetric/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Symmetric
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs161/Cryptography/hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hash Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs161/Cryptography/asymmetric/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Asymmetric
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Memory Safety
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Memory Safety
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs161/memory%20safety/x86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    x86 Assembly
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs161/memory%20safety/vulnerabilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vulnerabilities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Web Security
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            Web Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../owasp/csrf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CSRF
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../owasp/xss/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    XSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../owasp/sql%20injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Injection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../owasp/command injection.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Injection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../owasp/File%20Inclusion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Inclusion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../owasp/File%20Upload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Upload
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Internet
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Internet
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Transport
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transport
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#transport_layer_principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transport Layer Principles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transport Layer Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transport_layer_goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transport Layer Goals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reliability_absraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reliability Absraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demultiplexing_with_ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Demultiplexing with Ports
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bytestream_abstraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bytestream Abstraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#udp_and_datagrams" class="md-nav__link">
+    <span class="md-ellipsis">
+      UDP and Datagrams
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tcp_design" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP Design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TCP Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reliably_delivering_a_single_packet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reliably Delivering a Single Packet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reliably_delivering_multiple_packets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reliably Delivering Multiple Packets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window-based_algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Window-Based Algorithms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      Window Size
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Window Size">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fill_the_pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fill the Pipe
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tcp_implement" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP Implement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TCP Implement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tcp_segments" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP Segments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequence_numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequence Numbers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP State
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full_duplex" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full Duplex
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp_handshake" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP Handshake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ending_connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ending Connections
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#piggybacking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Piggybacking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sliding_window" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sliding Window
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detecting_loss_and_re-sending_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detecting Loss and Re-Sending Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../applications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Application
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    End-to-End
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    shell
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/vim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    vim
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/regular%20expression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Regular Expression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Go/syntax/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Go
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SQL
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/MySQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MySQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#transport_layer_principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transport Layer Principles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transport Layer Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transport_layer_goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transport Layer Goals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reliability_absraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reliability Absraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demultiplexing_with_ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Demultiplexing with Ports
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bytestream_abstraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bytestream Abstraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#udp_and_datagrams" class="md-nav__link">
+    <span class="md-ellipsis">
+      UDP and Datagrams
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tcp_design" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP Design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TCP Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reliably_delivering_a_single_packet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reliably Delivering a Single Packet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reliably_delivering_multiple_packets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reliably Delivering Multiple Packets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window-based_algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Window-Based Algorithms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      Window Size
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Window Size">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fill_the_pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fill the Pipe
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tcp_implement" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP Implement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TCP Implement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tcp_segments" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP Segments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequence_numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequence Numbers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP State
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full_duplex" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full Duplex
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp_handshake" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP Handshake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ending_connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ending Connections
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#piggybacking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Piggybacking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sliding_window" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sliding Window
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detecting_loss_and_re-sending_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detecting Loss and Re-Sending Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Transport</h1>
+
+<h2 id="transport_layer_principles">Transport Layer Principles<a class="headerlink" href="#transport_layer_principles" title="Permanent link">&para;</a></h2>
+<h3 id="transport_layer_goals">Transport Layer Goals<a class="headerlink" href="#transport_layer_goals" title="Permanent link">&para;</a></h3>
+<ul>
+<li>reliability</li>
+<li>demultiplexing</li>
+<li>flow control and congestion control</li>
+</ul>
+<h3 id="reliability_absraction">Reliability Absraction<a class="headerlink" href="#reliability_absraction" title="Permanent link">&para;</a></h3>
+<p>Many applications require reliability.
+However, Layer 3 only provided unreliable, best-effort packet delivery. Packets can be lost (dropped), corrupted, and reordered. Packets can be delayed (e.g. a packet could stuck in a queue waiting to cross a link). In rare cases, packets can even be duplicated.</p>
+<p>For practical reasons, reliability is implemented at the end hosts, not at intermediate routers. 
+Also, reliability is implemented in the <em>operating system</em> for convenience, so that applications don’t need to all re-implement their own reliability.</p>
+<p>We will formalize reliability by defining <strong>at-least-once delivery</strong>. In this model, the destination must receive every packet, without corruption, at least once, but may receive multiple duplicate copies of a packet. </p>
+<h3 id="demultiplexing_with_ports">Demultiplexing with Ports<a class="headerlink" href="#demultiplexing_with_ports" title="Permanent link">&para;</a></h3>
+<p>Suppose that my personal computer has two applications that are both talking to the same server. When packets arrive at my personal computer, they have the same source IP address (server), and the same destination IP address (my computer). How can I tell which packets are meant for which application?</p>
+<p>In order to distinguish, or <strong>demultiplex</strong>, which packets are meant for which application, the transport layer header includes an additional <strong>port number</strong>, which can be used to identify a specific application on an end host.</p>
+<p>Because <em>the transport layer is implemented in the operating system</em>, these ports are the attachment point where the application connects to the operating system’s network stack.<br />
+The application knows its own port number, and the operating system knows the port numbers for all the applications, and the matching number is how data is unambiguously transferred between the application and operating system.</p>
+<p><img alt="" src="../picture/trans.png" /></p>
+<p>The modern Internet commonly uses the client-server design, where clients access services, and servers provide those services. 
+- Servers usually listen for requests on well-known ports (port numbers 0-1023). Clients know these ports and can access them to request services. 
+  For example, application-level protocols with well-known port numbers include HTTP (port 80) and SSH (port 22).
+- By contrast, clients can select their own random port numbers (usually port numbers 1024-65535). 
+  Client port numbers are <strong>ephemeral</strong>, because the port number can be abandoned after the connection is over, and does not need to be permanent.</p>
+<h3 id="bytestream_abstraction">Bytestream Abstraction<a class="headerlink" href="#bytestream_abstraction" title="Permanent link">&para;</a></h3>
+<p>Implementing reliability at the transport layer means that the application developer no longer needs to think in terms of individual limited-size packets being sent across the network. Instead, the developer can think in terms of a <strong>reliable in-order bytestream</strong>.
+The sender has a stream of bytes with no length limit, and provides this stream to the transport layer. Then, the recipient receives the exact same stream of bytes, in the same order, with no bytes lost.</p>
+<h3 id="udp_and_datagrams">UDP and Datagrams<a class="headerlink" href="#udp_and_datagrams" title="Permanent link">&para;</a></h3>
+<p>Applications that don’t need reliability can use UDP (User Datagram Protocol)at the transport layer. 
+- UDP does not provide reliability guarantees. If the application needs a packet to arrive, the application must handle re-sending packets on its own (the transport layer will not re-send packets). 
+- Messages in UDP are limited to a single packet -- <strong>UDP datagram</strong>. If the application wants to send larger messages, the application is responsible for breaking up and reassembling those messages. 
+- Note that UDP still implements the notion of ports for demultiplexing, though.</p>
+<hr />
+<table>
+<thead>
+<tr>
+<th>TCP</th>
+<th>UDP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>demultiplexing</td>
+<td>demultiplexing</td>
+</tr>
+<tr>
+<td>bytestream abstraction</td>
+<td>datagram abstraction</td>
+</tr>
+<tr>
+<td>reliability</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tcp_design">TCP Design<a class="headerlink" href="#tcp_design" title="Permanent link">&para;</a></h2>
+<h3 id="reliably_delivering_a_single_packet">Reliably Delivering a Single Packet<a class="headerlink" href="#reliably_delivering_a_single_packet" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The time it takes for a packet to travel from sender to receiver is the <strong>one-way delay</strong>. </li>
+<li>The time it takes for a packet to travel from sender to receiver, plus the time for a reply packet to travel from receiver to sender, is the <strong>round-trip time (RTT)</strong>.</li>
+</ul>
+<blockquote>
+<p>How does the sender know if the packet was successfully received?</p>
+</blockquote>
+<p>The receiver can send an acknowledgment (ack) message, confirming that the packet was received.</p>
+<blockquote>
+<p>What happens if the packet gets dropped? </p>
+</blockquote>
+<p>The sender can maintain a <strong>timer</strong>. When the timer expires, we can re-send the packet.
+When the sender receives an ack, the sender can cancel the timer.</p>
+<p>A good timer length would be the round-trip time. </p>
+<blockquote>
+<p>What happens if the ack is dropped?</p>
+</blockquote>
+<p>The destination received two copies of the packet. </p>
+<blockquote>
+<p>What if the bits are corrupted?</p>
+</blockquote>
+<p>We can add a <strong>checksum</strong> in the transport layer header (different from the IP layer checksum). 
+When the receiver sees a corrupt packet, it can do two things: 
+- Either the receiver can explicitly re-send a negative acknowledgement (<strong>nack</strong>), telling the sender to re-send the packet.
+- Or, the receiver can drop the corrupt packet and do nothing. Then, the sender will time out and re-send the packet.</p>
+<p>TCP uses the latter.</p>
+<blockquote>
+<p>What if the packets are delayed?</p>
+</blockquote>
+<p>If the delay is very long, the sender might time out before the ack arrives. The sender will re-send the packet (so the recipient might get two duplicates), and the sender might get two acks.</p>
+<blockquote>
+<p>What if the sender sends one packet, but it’s duplicated in the network, and the recipient receives two copies?</p>
+</blockquote>
+<p>The recipient would send two acks, but both the sender and the recipient can safely handle duplicates.</p>
+<hr />
+<p>In summary, the single-packet reliability protocol is:</p>
+<p>If you are the sender: Send the packet, and set a timer. If no ack arrives before the timer goes off, re-send the packet and reset the timer. Stop and cancel the timer when the ack arrives.</p>
+<p>If you are the recipient: If you receive the uncorrupted packet, send an ack. </p>
+<p>This protocol guarantees at-least-once delivery.</p>
+<h3 id="reliably_delivering_multiple_packets">Reliably Delivering Multiple Packets<a class="headerlink" href="#reliably_delivering_multiple_packets" title="Permanent link">&para;</a></h3>
+<p>We could follow the same transmission rules (re-send when timer expires) for every single packet. 
+To distinguish packets, we can attach a unique <strong>sequence number</strong> to every packet. Each ack will be related to a specific packet. Sequence numbers can also help us reorder packets if they arrive out of order.</p>
+<blockquote>
+<p>When does the sender send each packet? </p>
+</blockquote>
+<p>The simplest approach is the <strong>stop and wait</strong> protocol, where the sender waits for packet i to be acknowledged before sending packet i+1. </p>
+<p>How can we make this faster?
+We can send packets in parallel. </p>
+<p>When a packet is sent, but its corresponding ack has not been received, we call that packet <strong>in flight</strong>.</p>
+<h3 id="window-based_algorithms">Window-Based Algorithms<a class="headerlink" href="#window-based_algorithms" title="Permanent link">&para;</a></h3>
+<p>We set a limit W and say that only W packets can be in flight at any given time. This is the key idea behind <strong>window-based protocols</strong>, where W is the size of the window.</p>
+<p>The sender can start by sending W packets. When an ack arrives, we send the next packet in line.</p>
+<h3 id="window_size">Window Size<a class="headerlink" href="#window_size" title="Permanent link">&para;</a></h3>
+<p>How should W be selected?</p>
+<ul>
+<li>We want to fully use our available network capacity (“fill the pipe”). </li>
+<li>However, we don’t want to overload links, since other people may be using that link (congestion control). </li>
+<li>We also don’t want to overload the receiver, who needs to receive and process all the packets from the sender (flow control).</li>
+</ul>
+<h4 id="fill_the_pipe">Fill the Pipe<a class="headerlink" href="#fill_the_pipe" title="Permanent link">&para;</a></h4>
+<h2 id="tcp_implement">TCP Implement<a class="headerlink" href="#tcp_implement" title="Permanent link">&para;</a></h2>
+<h3 id="tcp_segments">TCP Segments<a class="headerlink" href="#tcp_segments" title="Permanent link">&para;</a></h3>
+<p>The application is relying on a bytestream abstraction, and is sending us a continuous stream of bytes.
+In order to <em>form packets out of bytes</em> in the bytestream, we’ll introduce a unit of data called a <strong>TCP segment</strong>. </p>
+<p>The TCP implementation at the sender will collect bytes from the bytestream, one by one, and place those bytes into a TCP segment. When the TCP segment is full, we send that TCP segment, and then start a new TCP segment.</p>
+<p>Sometimes, the sender wants to send less data than the maximum segment size. In that case, we wouldn’t want the TCP segment to be waiting forever for more bytes that never come. To fix this, we’ll start a <strong>timer</strong> every time we start filling a new empty segment. If the timer expires, we’ll send the TCP segment, even if it is not full yet.</p>
+<p><img alt="" src="../picture/tcpseg.png" /></p>
+<p>Before sending the data in a TCP segment, the sender’s TCP implementation will add a <strong>TCP header</strong> with relevant metadata (e.g. sequence number, port numbers). Then, the segment and header are passed down to the IP layer, which will attach an IP header and send the packet through the network.
+The TCP segment, with a TCP header and IP header on top, is sometimes called a <strong>TCP/IP packet</strong>. Equivalently, this is an <strong>IP packet</strong> whose payload consists of a TCP header and data.</p>
+<p><img alt="" src="../picture/tcpip.png" /></p>
+<p>How should the <strong>maximum segment size (MSS)</strong> be set?
+MSS (TCP segment limit) = MTU (IP packet limit) - IP header size - TCP header size</p>
+<h3 id="sequence_numbers">Sequence Numbers<a class="headerlink" href="#sequence_numbers" title="Permanent link">&para;</a></h3>
+<p>In practice, instead of numbering individual segments, we assign a number to every byte in the bytestream. 
+Each segment’s header will contain a <strong>sequence number</strong> corresponding to the number of the first byte in that segment.</p>
+<p>Each bytestream starts with an <strong>initial sequence number (ISN)</strong>. The sender chooses an ISN and labels the first byte with number ISN+1, and so on.</p>
+<p>The acknowledgement number says, I have received all bytes up to, but not including, this number.
+<img alt="" src="../picture/ack.png" /></p>
+<p>Historically, the ISN was chosen to be random because the designers were concerned about ambiguous sequence numbers if all bytestreams started numbering at 0. 
+In practice, the ISN is chosen to be random for security reasons.</p>
+<h3 id="tcp_state">TCP State<a class="headerlink" href="#tcp_state" title="Permanent link">&para;</a></h3>
+<p>In TCP, both the sender and recipient need to maintain state.
+- The sender has to remember which bytes have been sent but not acknowledged yet. The sender also has to keep track of various timers.</p>
+<ul>
+<li>The recipient has to remember the out-of-order bytes that can’t be delivered to the application yet.</li>
+</ul>
+<p>Because TCP requires storing state, each bytestream is called a <strong>connection</strong> or <strong>session</strong>, and TCP is a <strong>connection-oriented protocol</strong>.
+TCP requires both parties to establish a connection and initialize state before data can be sent. TCP also needs a mechanism to tear down connections to free up the memory allocated for state on both end hosts.</p>
+<h3 id="full_duplex">Full Duplex<a class="headerlink" href="#full_duplex" title="Permanent link">&para;</a></h3>
+<p>To support sending messages in both directions, TCP connections are <strong>full duplex</strong>. Instead of designating one sender and one recipient, both end hosts in the connection can send and receive data simultaneously, in the same connection.</p>
+<p>To support sending data in both directions, each TCP connection has two bytestreams: A to B, and B to A.</p>
+<p>Each packet can contain both data and acknowledgement information. 
+The sequence number would correspond to the sender’s bytestream (the bytes I am sending).
+The acknowledgement number would correspond to the recipient’s bytestream (the bytes I received from you).</p>
+<h3 id="tcp_handshake">TCP Handshake<a class="headerlink" href="#tcp_handshake" title="Permanent link">&para;</a></h3>
+<p>To establish a TCP connection, the two hosts perform a three-way handshake to agree on the ISNs in each direction.</p>
+<h3 id="ending_connections">Ending Connections<a class="headerlink" href="#ending_connections" title="Permanent link">&para;</a></h3>
+<h3 id="piggybacking">Piggybacking<a class="headerlink" href="#piggybacking" title="Permanent link">&para;</a></h3>
+<p>When the recipient gets a packet, if it has no data to send, the recipient has two choices. 
+- immediately send the ack, with no data to send
+- wait until it has some data to send, and then send the ack with the new data -- <strong>piggybacking</strong></p>
+<h3 id="sliding_window">Sliding Window<a class="headerlink" href="#sliding_window" title="Permanent link">&para;</a></h3>
+<h3 id="detecting_loss_and_re-sending_data">Detecting Loss and Re-Sending Data<a class="headerlink" href="#detecting_loss_and_re-sending_data" title="Permanent link">&para;</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.expand", "navigation.sections", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+        <script src="../../javascripts/mathjax-config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
