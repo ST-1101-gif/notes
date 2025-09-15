@@ -2,138 +2,226 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ST-1101-gif.github.io/notes/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/wireshark/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/Go/syntax/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/SQL/MySQL/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/SQL/SQL/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/SQL/enter/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/cs161/principles/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/cs161/Cryptography/asymmetric/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/cs161/Cryptography/hash/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/cs161/Cryptography/intro/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/cs161/Cryptography/symmetric/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/cs161/memory%20safety/mitigating/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/cs161/memory%20safety/vulnerabilities/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/cs161/memory%20safety/x86/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61a%20notes/00Getting%20Started/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61a%20notes/chap1/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61a%20notes/chap2/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61a%20notes/chap3/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61a%20notes/chap4/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61a%20notes/hog/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61a%20notes/oop/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61a%20notes/small_function.md/iteration/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61a%20notes/small_function.md/linked_list/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61a%20notes/small_function.md/predicate_function/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61a%20notes/small_function.md/recursive/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61a%20notes/small_function.md/tree/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61a%20notes/small_function.md/unique_digits/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61b%20notes/Asymptotic/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61b%20notes/Deque/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61b%20notes/debug%20%26%20test/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61b%20notes/enum/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61b%20notes/idea/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61b%20notes/java/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61b%20notes/software_engineering/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61b%20notes/w1dsy2ew/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ST-1101-gif.github.io/notes/cs61b%20notes/waiting/</loc>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/git/git/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/leetcode/leetcode/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/linux/bandit/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/linux/regular%20expression/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/linux/shell/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/linux/vim/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/owasp/File%20Inclusion/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/owasp/File%20Upload/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
-         <loc>https://ST-1101-gif.github.io/notes/owasp/command%20injecttion/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <loc>https://ST-1101-gif.github.io/notes/owasp/command%20injection/</loc>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/owasp/csrf/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/owasp/sql%20injection/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/owasp/xss/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/web/Routing/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/web/application/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/web/applications/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/web/end-to-end/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/web/internet/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/web/intro/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/web/transform/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://ST-1101-gif.github.io/notes/web/transport/</loc>
-         <lastmod>2025-09-14</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
 </urlset>
